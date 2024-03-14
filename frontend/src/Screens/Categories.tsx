@@ -115,13 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginTop: 30,
-    borderRadius: 5,
-    rowGap: 20
+    borderRadius: 5
   },
   button: {
     backgroundColor: THEME.colors.bgButtons,
     width: '100%',
-    paddingVertical: 5,
+    paddingVertical: 10,
     borderRadius: 5
   },
   textButton: {
@@ -129,7 +128,8 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   flatList: {
-    flex: 1
+    flex: 1,
+    marginTop: 20
   },
   headerFlatListText: {
     textAlign: 'center',

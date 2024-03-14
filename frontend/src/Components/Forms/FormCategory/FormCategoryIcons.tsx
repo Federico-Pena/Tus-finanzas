@@ -7,7 +7,7 @@ import FlatListItemSeparator from '../../FlatListSeparator/FlatListSeparator'
 interface FormCategoryIconsProps {
   onIconPicked: (category: CategoryIcon) => void
 }
-
+/* <MaterialIcons name="checkroom" size={24} color="black" /> */
 const FormCategoryIcons = ({ onIconPicked }: FormCategoryIconsProps) => {
   const iconNames = [
     { name: '', iconName: 'store' },
@@ -24,7 +24,7 @@ const FormCategoryIcons = ({ onIconPicked }: FormCategoryIconsProps) => {
     { name: '', iconName: 'work' },
     { name: '', iconName: 'pets' },
     { name: '', iconName: 'child-friendly' },
-    { name: '', iconName: 'flight' },
+    { name: '', iconName: 'directions-transit' },
     { name: '', iconName: 'beach-access' },
     { name: '', iconName: 'movie' },
     { name: '', iconName: 'book' },
@@ -32,21 +32,21 @@ const FormCategoryIcons = ({ onIconPicked }: FormCategoryIconsProps) => {
     { name: '', iconName: 'brush' },
     { name: '', iconName: 'build' },
     { name: '', iconName: 'computer' },
-    { name: '', iconName: 'shopping-basket' },
-    { name: '', iconName: 'attach-money' },
+    { name: '', iconName: 'theater-comedy' },
+    { name: '', iconName: 'card-giftcard' },
     { name: '', iconName: 'savings' },
     { name: '', iconName: 'payment' },
     { name: '', iconName: 'receipt' },
     { name: '', iconName: 'account-balance' },
     { name: '', iconName: 'local-atm' },
-    { name: '', iconName: 'monetization-on' },
+    { name: '', iconName: 'call' },
     { name: '', iconName: 'trending-up' },
-    { name: '', iconName: 'security' },
+    { name: '', iconName: 'water-drop' },
     { name: '', iconName: 'volunteer-activism' },
-    { name: '', iconName: 'eco' },
-    { name: '', iconName: 'star-rate' },
-    { name: '', iconName: 'new-releases' },
-    { name: '', iconName: 'autorenew' },
+    { name: '', iconName: 'wifi' },
+    { name: '', iconName: 'local-mall' },
+    { name: '', iconName: 'checkroom' },
+    { name: '', iconName: 'gas-meter' },
     { name: '', iconName: 'event' },
     { name: '', iconName: 'family-restroom' },
     { name: '', iconName: 'local-drink' }

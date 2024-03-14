@@ -7,12 +7,21 @@ import { useThemeContext } from '../../Context/ThemeContext/ThemeContext'
 import { getColors } from '../../theme'
 
 const TransactionList = () => {
-  const { transactions, transactionsFiltered } = useTransactionContext()
+  const { transactions, transactionsFiltered, totalCount } = useTransactionContext()
   const { theme } = useThemeContext()
-  const { textColor, backGroundColor } = getColors(theme)
+  const { textColor, backGroundColor, shadowColor } = getColors(theme)
+
+  const total = totalCount > transactions.length ? totalCount : transactions.length
 
   return transactions.length > 0 ? (
     <View style={styles.container}>
+      {transactionsFiltered.length === 0 && totalCount > 0 && (
+        <TextComponent
+          styles={{ ...textColor, ...backGroundColor, ...shadowColor, ...styles.totalCount }}>
+          Viendo {transactions.length} de {total} transacciones
+        </TextComponent>
+      )}
+
       {transactionsFiltered.length > 0 ? (
         <FlatList
           style={styles.flatList}
@@ -54,6 +63,15 @@ const styles = StyleSheet.create({
   },
   contentList: {
     rowGap: 20
+  },
+  totalCount: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 10,
+    alignSelf: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 5
   },
   containerTextEmpty: {
     width: '100%',

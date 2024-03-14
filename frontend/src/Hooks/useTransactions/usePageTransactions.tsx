@@ -5,7 +5,7 @@ import { RUTES } from '../../config/Rutes'
 
 const usePageTransactions = () => {
   const { fetchData } = useFetch()
-  const { dispatch } = useTransactionContext()
+  const { dispatch, transactions } = useTransactionContext()
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
@@ -27,6 +27,17 @@ const usePageTransactions = () => {
             payload: totalCount
           })
           setPage(p)
+          setTotalPages(totalPages)
+        } else {
+          dispatch({
+            type: 'ADD_TRANSACTIONS',
+            payload: []
+          })
+          dispatch({
+            type: 'ADD_TOTAL_COUNT',
+            payload: 0
+          })
+          setPage(page)
           setTotalPages(totalPages)
         }
       } catch (error) {

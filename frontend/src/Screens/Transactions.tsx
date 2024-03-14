@@ -14,7 +14,7 @@ import TransactionListFilters from '../Components/TransactionList/TransactionLis
 
 const Transactions = () => {
   const { page, totalPages, changePage, loading } = usePageTransactions()
-  const { transactions } = useTransactionContext()
+  const { transactions, totalCount } = useTransactionContext()
   const { navigate } = useNavigation<StackNavigationProp<RoutesStackList>>()
 
   const openForm = () => {
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   containerList: {
     flex: 1,
     width: '100%',
-    paddingVertical: 10
+    paddingTop: 10,
+    rowGap: 10
   }
 })

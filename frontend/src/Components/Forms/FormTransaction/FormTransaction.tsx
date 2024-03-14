@@ -24,7 +24,7 @@ const FormTransaction = () => {
   const { addTransaction, editTransaction, loading } = useTransactions()
   const { theme } = useThemeContext()
   const { backGroundColor, shadowColor, textColor } = getColors(theme)
-  const { getCategories } = useCategories()
+  const { getCategories, loading: loadingCategories } = useCategories()
   const navigation = useNavigation()
   const { params } = useRoute() as { params: RouteParams }
 
@@ -132,6 +132,7 @@ const FormTransaction = () => {
               inputMode='text'
               editable={false}
             />
+            {loadingCategories && <ActivityIndicator size={'small'} color={'#1473E6'} />}
           </TouchableOpacity>
         )}
       />

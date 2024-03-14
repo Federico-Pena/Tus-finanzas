@@ -14,6 +14,10 @@ export const getTransactions = async (req: Request, res: Response): Promise<void
     if (user === null) {
       return sendResponse(res, 404, { error: 'El usuario no existe.' })
     }
+    const totalCount = await Transaction.countDocuments({
+      user: user._id
+    })
+
     const transactions = await Transaction.find({
       user: user._id
     })
@@ -24,7 +28,6 @@ export const getTransactions = async (req: Request, res: Response): Promise<void
       .skip(skipIndex)
       .exec()
 
-    const totalCount = transactions.length
     const totalPages = Math.ceil(totalCount / limit)
     if (transactions.length > 0) {
       sendResponse(res, 200, {

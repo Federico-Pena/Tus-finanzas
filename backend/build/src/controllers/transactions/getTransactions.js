@@ -27,6 +27,9 @@ const getTransactions = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (user === null) {
             return (0, response_1.sendResponse)(res, 404, { error: 'El usuario no existe.' });
         }
+        const totalCount = yield transaction_1.Transaction.countDocuments({
+            user: user._id
+        });
         const transactions = yield transaction_1.Transaction.find({
             user: user._id
         })
@@ -36,7 +39,6 @@ const getTransactions = (req, res) => __awaiter(void 0, void 0, void 0, function
             .limit(limit)
             .skip(skipIndex)
             .exec();
-        const totalCount = transactions.length;
         const totalPages = Math.ceil(totalCount / limit);
         if (transactions.length > 0) {
             (0, response_1.sendResponse)(res, 200, {

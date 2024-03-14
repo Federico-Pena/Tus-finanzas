@@ -14,6 +14,8 @@ const useCategories = () => {
     setLoading(true)
     try {
       const url = RUTES.CATEGORIES.getCategories
+      console.log(url)
+
       const { status, data } = await fetchData({ url, method: 'GET' })
       if (status === 200) {
         dispatch({
