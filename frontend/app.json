@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Tus finanzas",
+    "slug": "tus-finanzas",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/bg-app.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.chifo.tus.finanzas",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "notification": {
+        "icon": "./assets/icon.png",
+        "color": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Roboto-Bold.ttf",
+            "./assets/fonts/Roboto-Light.ttf",
+            "./assets/fonts/Roboto-Regular.ttf"
+          ]
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7c1c9dae-56b8-4efd-971c-3f3a6de2ca2c"
+      }
+    },
+    "owner": "federicopena"
+  }
+}
