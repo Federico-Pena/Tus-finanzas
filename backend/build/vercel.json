@@ -8,7 +8,7 @@
   ],
   "crons": [
     {
-      "path": "/api/cron",
+      "path": "/src/controllers/notifications/sendExpoNotification",
       "schedule": "* * * * *"
     }
   ],
