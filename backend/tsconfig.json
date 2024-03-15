@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2015",
-    "module": "NodeNext",
+    "module": "CommonJS",
     "outDir": "./build",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

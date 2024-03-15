@@ -17,8 +17,8 @@ export const sendNotification = async (_req: Request, res: Response): Promise<vo
   const notifications = await Notification.find({
     sendAt: { $lte: new Date() }
   })
-  for (const notification of notifications) {
-    try {
+  try {
+    for (const notification of notifications) {
       await sendExpoNotification({
         to: notification.to,
         title: notification.title,
@@ -26,11 +26,11 @@ export const sendNotification = async (_req: Request, res: Response): Promise<vo
       })
       await Notification.findByIdAndDelete({ _id: notification._id })
       console.log('Notificación enviada y eliminada')
-      res.status(200)
-    } catch (error) {
-      console.error('Error al enviar notificación', error)
-      res.status(500)
     }
+    res.status(200).send('Tareas programadas completadas')
+  } catch (error) {
+    console.error('Error al enviar notificación', error)
+    res.status(500).send('Error al manejar las tareas programadas')
   }
 }
 /* cron.schedule('* * * * *', async () => {

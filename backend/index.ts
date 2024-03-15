@@ -1,7 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-import { categoriesRoutes } from './src/routes/categories.routes'
 import { connectToDatabase } from './src/database'
+import { categoriesRoutes } from './src/routes/categories.routes'
 import { userRoutes } from './src/routes/users.routes'
 import { transactionsRoutes } from './src/routes/transactions.routes'
 import { statsRoutes } from './src/routes/stats.routes'

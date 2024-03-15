@@ -28,8 +28,8 @@ const sendNotification = (_req, res) => __awaiter(void 0, void 0, void 0, functi
     const notifications = yield notification_1.default.find({
         sendAt: { $lte: new Date() }
     });
-    for (const notification of notifications) {
-        try {
+    try {
+        for (const notification of notifications) {
             yield sendExpoNotification({
                 to: notification.to,
                 title: notification.title,
@@ -37,12 +37,12 @@ const sendNotification = (_req, res) => __awaiter(void 0, void 0, void 0, functi
             });
             yield notification_1.default.findByIdAndDelete({ _id: notification._id });
             console.log('Notificación enviada y eliminada');
-            res.status(200);
         }
-        catch (error) {
-            console.error('Error al enviar notificación', error);
-            res.status(500);
-        }
+        res.status(200).send('Tareas programadas completadas');
+    }
+    catch (error) {
+        console.error('Error al enviar notificación', error);
+        res.status(500).send('Error al manejar las tareas programadas');
     }
 });
 exports.sendNotification = sendNotification;
