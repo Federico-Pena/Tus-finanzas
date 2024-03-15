@@ -6,12 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "crons": [
-    {
-      "path": "/src/controllers/notifications/sendExpoNotification",
-      "schedule": "* * * * *"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",

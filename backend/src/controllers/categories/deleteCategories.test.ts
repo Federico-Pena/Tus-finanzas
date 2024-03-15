@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { deleteCategories } from './deleteCategories'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
@@ -13,7 +13,7 @@ let token: string
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.delete(RUTES.CATEGORIES.deleteCategories, authMiddleware, deleteCategories)
+  app.delete(ROUTES.CATEGORIES.deleteCategories, authMiddleware, deleteCategories)
   await dbTestConnect()
   const user = new User({
     username: 'Usuario de Prueba',
@@ -33,7 +33,7 @@ describe('deleteCategories controller', () => {
   it('should return error 500 when findByIdAndDelete fail message should be "Error al borrar la categoría"', async () => {
     const categories = await Category.find()
     const categoryIdToDelete = categories[1]._id.toString()
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
     vi.spyOn(Category, 'findByIdAndDelete').mockResolvedValueOnce(null)
     await request(app)
       .delete(url)
@@ -48,7 +48,7 @@ describe('deleteCategories controller', () => {
     const categories = await Category.find()
     const categoryIdToDelete = categories[1]._id.toString()
     const userName = 'PepeExample'
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
     const falseToken = generateValidToken(userName, 'user')
     await request(app)
       .delete(url)
@@ -62,7 +62,7 @@ describe('deleteCategories controller', () => {
   it('should return error 404 when category is default or does not belong to the user message should be "Categoría no encontrada, no pertenece al usuario o no puede eliminarla."', async () => {
     const categories = await Category.find()
     const categoryIdToDelete = categories[0]._id.toString()
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
     await request(app)
       .delete(url)
       .set('Authorization', `Bearer ${token}`)
@@ -79,7 +79,7 @@ describe('deleteCategories controller', () => {
     category[0].user = idUser
     const newCategory = await category[0].save()
     const idString = newCategory._id.toString()
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', idString)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', idString)}`
     await request(app)
       .delete(url)
       .expect(403)
@@ -92,7 +92,7 @@ describe('deleteCategories controller', () => {
   it('should return error 500 when a server error occurred message should be "Error interno del servidor"', async () => {
     const categories = await Category.find()
     const categoryIdToDelete = categories[1]._id.toString()
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
 
     vi.spyOn(Category, 'findByIdAndDelete').mockImplementationOnce(() => {
       throw new Error('Simulated internal server error')
@@ -109,7 +109,7 @@ describe('deleteCategories controller', () => {
   it('should delete a category when id in request is correct', async () => {
     const categories = await Category.find()
     const categoryIdToDelete = categories[1]._id.toString()
-    const url = `${RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
+    const url = `${ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`
 
     await request(app)
       .delete(url)

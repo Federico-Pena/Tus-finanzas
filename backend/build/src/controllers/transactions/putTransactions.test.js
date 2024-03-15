@@ -24,11 +24,11 @@ const putTransactions_1 = require("./putTransactions");
 const authorization_1 = __importDefault(require("../../middleware/authorization"));
 let app;
 let token;
-const url = constants_1.RUTES.TRANSACTIONS.putTransactions.replace(':id', '');
+const url = constants_1.ROUTES.TRANSACTIONS.putTransactions.replace(':id', '');
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.put(constants_1.RUTES.TRANSACTIONS.putTransactions, authorization_1.default, putTransactions_1.putTransactions);
+    app.put(constants_1.ROUTES.TRANSACTIONS.putTransactions, authorization_1.default, putTransactions_1.putTransactions);
     yield (0, databaseTest_1.dbTestConnect)();
     const newUser = new user_1.default(testConst_1.mockUsers[0]);
     const userSaved = yield newUser.save();

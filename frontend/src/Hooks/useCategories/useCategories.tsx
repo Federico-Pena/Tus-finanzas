@@ -1,5 +1,5 @@
 import useFetch from '../useFetch/useFetch'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 import { FormData } from '../../Components/Forms/FormCategory/types'
 import { useCategoriesContext } from '../../Context/CategoriesContext/CategoriesContext'
 import { useTransactionContext } from '../../Context/TransactionsContext/TransactionContext'
@@ -13,7 +13,7 @@ const useCategories = () => {
   const getCategories = async () => {
     setLoading(true)
     try {
-      const url = RUTES.CATEGORIES.getCategories
+      const url = ROUTES.CATEGORIES.getCategories
       console.log(url)
 
       const { status, data } = await fetchData({ url, method: 'GET' })
@@ -33,7 +33,7 @@ const useCategories = () => {
       setLoading(true)
       const { category, isDefault } = datos
       const { iconName, name } = category
-      const url = RUTES.CATEGORIES.postCategories
+      const url = ROUTES.CATEGORIES.postCategories
       const { status, data } = await fetchData({
         url,
         method: 'POST',
@@ -58,7 +58,7 @@ const useCategories = () => {
       setLoading(true)
       const { category, isDefault } = datos
       const { iconName, name } = category
-      const url = `${RUTES.CATEGORIES.putCategories}${id}`
+      const url = `${ROUTES.CATEGORIES.putCategories}${id}`
       const { status, data } = await fetchData({
         url,
         method: 'PUT',
@@ -93,7 +93,7 @@ const useCategories = () => {
   const deleteCategory = async (id: string) => {
     try {
       setLoading(true)
-      const url = `${RUTES.CATEGORIES.deleteCategories}${id}`
+      const url = `${ROUTES.CATEGORIES.deleteCategories}${id}`
       const { status, data } = await fetchData({
         url,
         method: 'DELETE'

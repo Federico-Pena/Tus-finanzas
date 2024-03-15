@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
 import User from '../../models/user'
@@ -10,11 +10,11 @@ import authMiddleware from '../../middleware/authorization'
 
 let app: Application
 let token: string
-const url = `${RUTES.TRANSACTIONS.deleteTransactions.replace(':id', '')}`
+const url = `${ROUTES.TRANSACTIONS.deleteTransactions.replace(':id', '')}`
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.delete(RUTES.TRANSACTIONS.deleteTransactions, authMiddleware, deleteTransactions)
+  app.delete(ROUTES.TRANSACTIONS.deleteTransactions, authMiddleware, deleteTransactions)
   await dbTestConnect()
   const newUser = new User(mockUsers[0])
   const newUser2 = new User(mockUsers[1])

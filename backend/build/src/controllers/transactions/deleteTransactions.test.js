@@ -23,11 +23,11 @@ const transaction_1 = require("../../models/transaction");
 const authorization_1 = __importDefault(require("../../middleware/authorization"));
 let app;
 let token;
-const url = `${constants_1.RUTES.TRANSACTIONS.deleteTransactions.replace(':id', '')}`;
+const url = `${constants_1.ROUTES.TRANSACTIONS.deleteTransactions.replace(':id', '')}`;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.delete(constants_1.RUTES.TRANSACTIONS.deleteTransactions, authorization_1.default, deleteTransactions_1.deleteTransactions);
+    app.delete(constants_1.ROUTES.TRANSACTIONS.deleteTransactions, authorization_1.default, deleteTransactions_1.deleteTransactions);
     yield (0, databaseTest_1.dbTestConnect)();
     const newUser = new user_1.default(testConst_1.mockUsers[0]);
     const newUser2 = new user_1.default(testConst_1.mockUsers[1]);

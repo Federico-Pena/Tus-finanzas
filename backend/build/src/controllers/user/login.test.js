@@ -23,7 +23,7 @@ let app;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.get(constants_1.RUTES.USER.loginUser, login_1.login);
+    app.get(constants_1.ROUTES.USER.loginUser, login_1.login);
     yield (0, databaseTest_1.dbTestConnect)();
     const userPassword = 'Password88';
     const saltRounds = 10;
@@ -45,7 +45,7 @@ describe('login  controller', () => {
             password: 'password'
         };
         yield (0, supertest_1.default)(app)
-            .get(constants_1.RUTES.USER.loginUser)
+            .get(constants_1.ROUTES.USER.loginUser)
             .send(user)
             .expect(400)
             .then((response) => {
@@ -59,7 +59,7 @@ describe('login  controller', () => {
             password: 'password'
         };
         yield (0, supertest_1.default)(app)
-            .get(constants_1.RUTES.USER.loginUser)
+            .get(constants_1.ROUTES.USER.loginUser)
             .send(user)
             .expect(400)
             .then((response) => {
@@ -73,7 +73,7 @@ describe('login  controller', () => {
             password: 'Password88'
         };
         yield (0, supertest_1.default)(app)
-            .get(constants_1.RUTES.USER.loginUser)
+            .get(constants_1.ROUTES.USER.loginUser)
             .send(user)
             .expect(200)
             .then((response) => {
@@ -91,7 +91,7 @@ describe('login  controller', () => {
             throw new Error('Simulated internal server error');
         });
         yield (0, supertest_1.default)(app)
-            .get(constants_1.RUTES.USER.loginUser)
+            .get(constants_1.ROUTES.USER.loginUser)
             .send(user)
             .expect(500)
             .then((response) => {

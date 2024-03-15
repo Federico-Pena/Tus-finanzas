@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RUTES = void 0;
-exports.RUTES = {
+exports.ROUTES = void 0;
+exports.ROUTES = {
     CATEGORIES: {
         getCategories: '/api/categories/',
         postCategories: '/api/categories/new/',
@@ -24,5 +24,8 @@ exports.RUTES = {
         getCategoriesStats: '/api/stats/categories/',
         getCategoriesStatsYear: '/api/stats/categories/:year',
         getCategoriesStatsMonth: '/api/stats/categories/:year/:month'
+    },
+    NOTIFICATIONS: {
+        getCronNotifications: '/api/notification/'
     }
 };

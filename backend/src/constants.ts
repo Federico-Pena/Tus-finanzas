@@ -1,4 +1,4 @@
-export const RUTES = {
+export const ROUTES = {
   CATEGORIES: {
     getCategories: '/api/categories/',
     postCategories: '/api/categories/new/',
@@ -21,5 +21,8 @@ export const RUTES = {
     getCategoriesStats: '/api/stats/categories/',
     getCategoriesStatsYear: '/api/stats/categories/:year',
     getCategoriesStatsMonth: '/api/stats/categories/:year/:month'
+  },
+  NOTIFICATIONS: {
+    getCronNotifications: '/api/notification/'
   }
 } as const

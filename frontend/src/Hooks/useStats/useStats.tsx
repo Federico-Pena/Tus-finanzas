@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStatsContext } from '../../Context/StatsContext/StatsContext'
 import useFetch from '../useFetch/useFetch'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 import { statsHistoryFormat } from './helpers/statsHistoryFormat'
 import { groupData } from './helpers/statsYearFormat'
 import { useTransactionContext } from '../../Context/TransactionsContext/TransactionContext'
@@ -22,7 +22,7 @@ const useStats = (year: number, yearAndMonth: YearAndMonth) => {
     const getCategories = async () => {
       setLoading(true)
       try {
-        const url = RUTES.STATS.getCategoriesStats
+        const url = ROUTES.STATS.getCategoriesStats
         const { status, data } = await fetchData({ url, method: 'GET' })
         if (status === 200) {
           const formatData = statsHistoryFormat(data)
@@ -43,7 +43,7 @@ const useStats = (year: number, yearAndMonth: YearAndMonth) => {
     const getCategoriesYear = async () => {
       setLoadingYear(true)
       try {
-        const url = `${RUTES.STATS.getCategoriesStatsYear}${year}`
+        const url = `${ROUTES.STATS.getCategoriesStatsYear}${year}`
         const { status, data } = await fetchData({ url, method: 'GET' })
         if (status === 200) {
           const groupedResult = groupData(data)
@@ -70,7 +70,7 @@ const useStats = (year: number, yearAndMonth: YearAndMonth) => {
         } else {
           month = yearAndMonth.month
         }
-        const url = `${RUTES.STATS.getCategoriesStatsMonth}${yearAndMonth.year}/${month}`
+        const url = `${ROUTES.STATS.getCategoriesStatsMonth}${yearAndMonth.year}/${month}`
         const { status, data } = await fetchData({ url, method: 'GET' })
 
         if (status === 200) {

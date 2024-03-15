@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { registerSchema } from '../Components/Validations/registerValidation'
 import Input from '../Components/Input/Input'
-import { RUTES } from '../config/Rutes'
+import { ROUTES } from '../config/Routes'
 import useFetch from '../Hooks/useFetch/useFetch'
 import { useNavigation } from '@react-navigation/native'
 import TextComponent from '../Components/TextComponent/TextComponent'
@@ -38,7 +38,7 @@ const Register = () => {
   const submitForm = async (values: FormData) => {
     try {
       const { status } = await fetchData({
-        url: RUTES.USER.registerUser,
+        url: ROUTES.USER.registerUser,
         method: 'POST',
         body: values
       })

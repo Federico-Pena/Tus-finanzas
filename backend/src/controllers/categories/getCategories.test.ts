@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import request from 'supertest'
 import { getCategories } from './getCategories'
 import { Category } from '../../models/category'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
 import { generateValidToken, mockCategories } from '../testConst'
 import authMiddleware from '../../middleware/authorization'
@@ -11,12 +11,12 @@ import User from '../../models/user'
 
 let app: Application
 let token: string
-const url = RUTES.CATEGORIES.getCategories
+const url = ROUTES.CATEGORIES.getCategories
 
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.get(RUTES.CATEGORIES.getCategories, authMiddleware, getCategories)
+  app.get(ROUTES.CATEGORIES.getCategories, authMiddleware, getCategories)
   await dbTestConnect()
   const user = new User({
     username: 'Usuario de Prueba',

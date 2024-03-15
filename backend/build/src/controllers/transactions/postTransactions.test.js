@@ -24,11 +24,11 @@ const authorization_1 = __importDefault(require("../../middleware/authorization"
 const transaction_1 = require("../../models/transaction");
 let app;
 let token;
-const url = constants_1.RUTES.TRANSACTIONS.postTransactions;
+const url = constants_1.ROUTES.TRANSACTIONS.postTransactions;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.post(constants_1.RUTES.TRANSACTIONS.postTransactions, authorization_1.default, postTransactions_1.postTransactions);
+    app.post(constants_1.ROUTES.TRANSACTIONS.postTransactions, authorization_1.default, postTransactions_1.postTransactions);
     yield (0, databaseTest_1.dbTestConnect)();
     const newUser = new user_1.default(testConst_1.mockUsers[0]);
     const userSaved = yield newUser.save();

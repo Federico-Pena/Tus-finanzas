@@ -26,7 +26,7 @@ let token;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.delete(constants_1.RUTES.CATEGORIES.deleteCategories, authorization_1.default, deleteCategories_1.deleteCategories);
+    app.delete(constants_1.ROUTES.CATEGORIES.deleteCategories, authorization_1.default, deleteCategories_1.deleteCategories);
     yield (0, databaseTest_1.dbTestConnect)();
     const user = new user_1.default({
         username: 'Usuario de Prueba',
@@ -46,7 +46,7 @@ describe('deleteCategories controller', () => {
     it('should return error 500 when findByIdAndDelete fail message should be "Error al borrar la categoría"', () => __awaiter(void 0, void 0, void 0, function* () {
         const categories = yield category_1.Category.find();
         const categoryIdToDelete = categories[1]._id.toString();
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
         vi.spyOn(category_1.Category, 'findByIdAndDelete').mockResolvedValueOnce(null);
         yield (0, supertest_1.default)(app)
             .delete(url)
@@ -61,7 +61,7 @@ describe('deleteCategories controller', () => {
         const categories = yield category_1.Category.find();
         const categoryIdToDelete = categories[1]._id.toString();
         const userName = 'PepeExample';
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
         const falseToken = (0, testConst_1.generateValidToken)(userName, 'user');
         yield (0, supertest_1.default)(app)
             .delete(url)
@@ -75,7 +75,7 @@ describe('deleteCategories controller', () => {
     it('should return error 404 when category is default or does not belong to the user message should be "Categoría no encontrada, no pertenece al usuario o no puede eliminarla."', () => __awaiter(void 0, void 0, void 0, function* () {
         const categories = yield category_1.Category.find();
         const categoryIdToDelete = categories[0]._id.toString();
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
         yield (0, supertest_1.default)(app)
             .delete(url)
             .set('Authorization', `Bearer ${token}`)
@@ -92,7 +92,7 @@ describe('deleteCategories controller', () => {
         category[0].user = idUser;
         const newCategory = yield category[0].save();
         const idString = newCategory._id.toString();
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', idString)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', idString)}`;
         yield (0, supertest_1.default)(app)
             .delete(url)
             .expect(403)
@@ -105,7 +105,7 @@ describe('deleteCategories controller', () => {
     it('should return error 500 when a server error occurred message should be "Error interno del servidor"', () => __awaiter(void 0, void 0, void 0, function* () {
         const categories = yield category_1.Category.find();
         const categoryIdToDelete = categories[1]._id.toString();
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
         vi.spyOn(category_1.Category, 'findByIdAndDelete').mockImplementationOnce(() => {
             throw new Error('Simulated internal server error');
         });
@@ -121,7 +121,7 @@ describe('deleteCategories controller', () => {
     it('should delete a category when id in request is correct', () => __awaiter(void 0, void 0, void 0, function* () {
         const categories = yield category_1.Category.find();
         const categoryIdToDelete = categories[1]._id.toString();
-        const url = `${constants_1.RUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
+        const url = `${constants_1.ROUTES.CATEGORIES.deleteCategories.replace(':id', categoryIdToDelete)}`;
         yield (0, supertest_1.default)(app)
             .delete(url)
             .set('Authorization', `Bearer ${token}`)

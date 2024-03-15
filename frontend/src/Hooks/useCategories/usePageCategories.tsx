@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import useFetch from '../useFetch/useFetch'
 import { useCategoriesContext } from '../../Context/CategoriesContext/CategoriesContext'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 
 const usePageCategories = () => {
   const { fetchData } = useFetch()
@@ -12,7 +12,7 @@ const usePageCategories = () => {
     const getCategories = async () => {
       setLoading(true)
       try {
-        const url = RUTES.CATEGORIES.getCategories
+        const url = ROUTES.CATEGORIES.getCategories
         const { status, data } = await fetchData({ url, method: 'GET' })
         if (status === 200) {
           dispatch({

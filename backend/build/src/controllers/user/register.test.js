@@ -23,7 +23,7 @@ let app;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.post(constants_1.RUTES.USER.registerUser, register_1.register);
+    app.post(constants_1.ROUTES.USER.registerUser, register_1.register);
     yield (0, databaseTest_1.dbTestConnect)();
 }));
 afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
@@ -32,7 +32,7 @@ afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
 describe('register  controller', () => {
     it('It should give an error if the username is less than 3 or more than 12 characters message should be "El nombre de usuario debe tener entre 3 y 12 caracteres."', () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(testConst_1.userTest)
             .expect(400)
             .then((response) => {
@@ -47,7 +47,7 @@ describe('register  controller', () => {
             password: 'password'
         };
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(user)
             .expect(400)
             .then((response) => {
@@ -62,7 +62,7 @@ describe('register  controller', () => {
             password: 'password'
         };
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(user)
             .expect(400)
             .then((response) => {
@@ -77,7 +77,7 @@ describe('register  controller', () => {
             password: 'Password8'
         };
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(user)
             .expect(200)
             .then((response) => {
@@ -92,7 +92,7 @@ describe('register  controller', () => {
             password: 'Password8'
         };
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(user)
             .expect(400)
             .then((response) => {
@@ -110,7 +110,7 @@ describe('register  controller', () => {
             throw new Error('Simulated internal server error');
         });
         yield (0, supertest_1.default)(app)
-            .post(constants_1.RUTES.USER.registerUser)
+            .post(constants_1.ROUTES.USER.registerUser)
             .send(user)
             .expect(500)
             .then((response) => {

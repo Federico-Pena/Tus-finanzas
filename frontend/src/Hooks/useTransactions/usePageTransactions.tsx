@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTransactionContext } from '../../Context/TransactionsContext/TransactionContext'
 import useFetch from '../useFetch/useFetch'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 
 const usePageTransactions = () => {
   const { fetchData } = useFetch()
@@ -14,7 +14,7 @@ const usePageTransactions = () => {
     const getTransactions = async () => {
       setLoading(true)
       try {
-        const url = `${RUTES.TRANSACTIONS.getTransactions}?page=${page}`
+        const url = `${ROUTES.TRANSACTIONS.getTransactions}?page=${page}`
         const { status, data } = await fetchData({ url, method: 'GET' })
         if (status === 200) {
           const { transactions, page: p, totalCount, totalPages } = data

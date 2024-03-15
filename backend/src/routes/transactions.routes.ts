@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { RUTES } from '../constants'
+import { ROUTES } from '../constants'
 import { getTransactions } from '../controllers/transactions/getTransactions'
 import { postTransactions } from '../controllers/transactions/postTransactions'
 import { deleteTransactions } from '../controllers/transactions/deleteTransactions'
@@ -9,13 +9,17 @@ import authMiddleware from '../middleware/authorization'
 export const transactionsRoutes = Router()
 
 // Ruta para obtener todas las transacciones asociadas a un usuario específico.
-transactionsRoutes.get(RUTES.TRANSACTIONS.getTransactions, authMiddleware, getTransactions)
+transactionsRoutes.get(ROUTES.TRANSACTIONS.getTransactions, authMiddleware, getTransactions)
 
 // Ruta para crear una nueva transacción para un usuario específico.
-transactionsRoutes.post(RUTES.TRANSACTIONS.postTransactions, authMiddleware, postTransactions)
+transactionsRoutes.post(ROUTES.TRANSACTIONS.postTransactions, authMiddleware, postTransactions)
 
 // Ruta para actualizar una transacción existente para un usuario específico.
-transactionsRoutes.put(RUTES.TRANSACTIONS.putTransactions, authMiddleware, putTransactions)
+transactionsRoutes.put(ROUTES.TRANSACTIONS.putTransactions, authMiddleware, putTransactions)
 
 // Ruta para eliminar una transacción existente para un usuario específico.
-transactionsRoutes.delete(RUTES.TRANSACTIONS.deleteTransactions, authMiddleware, deleteTransactions)
+transactionsRoutes.delete(
+  ROUTES.TRANSACTIONS.deleteTransactions,
+  authMiddleware,
+  deleteTransactions
+)

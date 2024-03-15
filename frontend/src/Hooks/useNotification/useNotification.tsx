@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import registerForPushNotificationsAsync from './registerForPushNotificationsAsync'
 import useFetch from '../useFetch/useFetch'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 import { ITransaction } from '../../Context/TransactionsContext/types'
 import { scheduleNotificationAsync, setNotificationHandler } from 'expo-notifications'
 import { Alert } from 'react-native'
@@ -24,7 +24,7 @@ const useNotification = () => {
       if (token) {
         const { status } = await fetchData({
           method: 'POST',
-          url: RUTES.USER.postPushNotificationToken,
+          url: ROUTES.USER.postPushNotificationToken,
           body: { token: token }
         })
         if (status === 200) {

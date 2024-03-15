@@ -24,11 +24,11 @@ const testConst_1 = require("../testConst");
 const authorization_1 = __importDefault(require("../../middleware/authorization"));
 let app;
 let token;
-const url = constants_1.RUTES.CATEGORIES.postCategories;
+const url = constants_1.ROUTES.CATEGORIES.postCategories;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.post(constants_1.RUTES.CATEGORIES.postCategories, authorization_1.default, postCategories_1.postCategories);
+    app.post(constants_1.ROUTES.CATEGORIES.postCategories, authorization_1.default, postCategories_1.postCategories);
     yield (0, databaseTest_1.dbTestConnect)();
     const user = new user_1.default(testConst_1.userTest);
     const newUser = yield user.save();

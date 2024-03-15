@@ -1,7 +1,7 @@
 import express, { Application } from 'express'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { login } from './login'
 import User from '../../models/user'
 import { hash } from 'bcrypt'
@@ -10,7 +10,7 @@ let app: Application
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.get(RUTES.USER.loginUser, login)
+  app.get(ROUTES.USER.loginUser, login)
   await dbTestConnect()
   const userPassword = 'Password88'
   const saltRounds = 10
@@ -33,7 +33,7 @@ describe('login  controller', () => {
       password: 'password'
     }
     await request(app)
-      .get(RUTES.USER.loginUser)
+      .get(ROUTES.USER.loginUser)
       .send(user)
       .expect(400)
       .then((response) => {
@@ -47,7 +47,7 @@ describe('login  controller', () => {
       password: 'password'
     }
     await request(app)
-      .get(RUTES.USER.loginUser)
+      .get(ROUTES.USER.loginUser)
       .send(user)
       .expect(400)
       .then((response) => {
@@ -61,7 +61,7 @@ describe('login  controller', () => {
       password: 'Password88'
     }
     await request(app)
-      .get(RUTES.USER.loginUser)
+      .get(ROUTES.USER.loginUser)
       .send(user)
       .expect(200)
       .then((response) => {
@@ -80,7 +80,7 @@ describe('login  controller', () => {
     })
 
     await request(app)
-      .get(RUTES.USER.loginUser)
+      .get(ROUTES.USER.loginUser)
       .send(user)
       .expect(500)
       .then((response) => {

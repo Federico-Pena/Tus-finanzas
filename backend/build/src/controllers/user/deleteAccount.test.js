@@ -23,7 +23,7 @@ let app;
 beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.delete(constants_1.RUTES.USER.deleteUserAccount, deleteAccount_1.deleteAccount);
+    app.delete(constants_1.ROUTES.USER.deleteUserAccount, deleteAccount_1.deleteAccount);
     yield (0, databaseTest_1.dbTestConnect)();
     const userPassword = 'Password88';
     const saltRounds = 10;
@@ -42,7 +42,7 @@ describe('login  controller', () => {
     it('It should give an error if the user not exists message should be "El usuario no existe."', () => __awaiter(void 0, void 0, void 0, function* () {
         const userName = 'PepeExample88';
         yield (0, supertest_1.default)(app)
-            .delete(constants_1.RUTES.USER.deleteUserAccount.replace(':username', userName))
+            .delete(constants_1.ROUTES.USER.deleteUserAccount.replace(':username', userName))
             .expect(404)
             .then((response) => {
             const { error } = response.body;
@@ -53,7 +53,7 @@ describe('login  controller', () => {
         const userName = 'PepeExample';
         vi.spyOn(user_1.default, 'findByIdAndDelete').mockResolvedValueOnce(null);
         yield (0, supertest_1.default)(app)
-            .delete(constants_1.RUTES.USER.deleteUserAccount.replace(':username', userName))
+            .delete(constants_1.ROUTES.USER.deleteUserAccount.replace(':username', userName))
             .expect(500)
             .then((response) => {
             const { error } = response.body;
@@ -66,7 +66,7 @@ describe('login  controller', () => {
             throw new Error('Simulated internal server error');
         });
         yield (0, supertest_1.default)(app)
-            .delete(constants_1.RUTES.USER.deleteUserAccount.replace(':username', userName))
+            .delete(constants_1.ROUTES.USER.deleteUserAccount.replace(':username', userName))
             .expect(500)
             .then((response) => {
             const { error } = response.body;
@@ -76,7 +76,7 @@ describe('login  controller', () => {
     it('The user should be able to delete the account message should be "Usuario eliminado con éxito."', () => __awaiter(void 0, void 0, void 0, function* () {
         const userName = 'PepeExample';
         yield (0, supertest_1.default)(app)
-            .delete(constants_1.RUTES.USER.deleteUserAccount.replace(':username', userName))
+            .delete(constants_1.ROUTES.USER.deleteUserAccount.replace(':username', userName))
             .expect(200)
             .then((response) => {
             const { message } = response.body;

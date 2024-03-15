@@ -1,7 +1,7 @@
 import express, { Application } from 'express'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import User from '../../models/user'
 import { getTransactions } from './getTransactions'
 import { generateValidToken, mockCategories, mockTransactions, mockUsers } from '../testConst'
@@ -10,11 +10,11 @@ import authMiddleware from '../../middleware/authorization'
 import { Category } from '../../models/category'
 let app: Application
 let token: string
-const url = RUTES.TRANSACTIONS.getTransactions.replace(':user', '')
+const url = ROUTES.TRANSACTIONS.getTransactions.replace(':user', '')
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.get(RUTES.TRANSACTIONS.getTransactions, authMiddleware, getTransactions)
+  app.get(ROUTES.TRANSACTIONS.getTransactions, authMiddleware, getTransactions)
   await dbTestConnect()
 
   const newUser = new User(mockUsers[0])

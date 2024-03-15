@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import express, { Application } from 'express'
 import request from 'supertest'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { postCategories } from './postCategories'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
 import { Category } from '../../models/category'
@@ -11,12 +11,12 @@ import authMiddleware from '../../middleware/authorization'
 
 let app: Application
 let token: string
-const url = RUTES.CATEGORIES.postCategories
+const url = ROUTES.CATEGORIES.postCategories
 
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.post(RUTES.CATEGORIES.postCategories, authMiddleware, postCategories)
+  app.post(ROUTES.CATEGORIES.postCategories, authMiddleware, postCategories)
   await dbTestConnect()
   const user = new User(userTest)
   const newUser = await user.save()

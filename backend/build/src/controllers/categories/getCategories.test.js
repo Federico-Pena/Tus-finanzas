@@ -24,11 +24,11 @@ const authorization_1 = __importDefault(require("../../middleware/authorization"
 const user_1 = __importDefault(require("../../models/user"));
 let app;
 let token;
-const url = constants_1.RUTES.CATEGORIES.getCategories;
+const url = constants_1.ROUTES.CATEGORIES.getCategories;
 (0, vitest_1.beforeAll)(() => __awaiter(void 0, void 0, void 0, function* () {
     app = (0, express_1.default)();
     app.use(express_1.default.json());
-    app.get(constants_1.RUTES.CATEGORIES.getCategories, authorization_1.default, getCategories_1.getCategories);
+    app.get(constants_1.ROUTES.CATEGORIES.getCategories, authorization_1.default, getCategories_1.getCategories);
     yield (0, databaseTest_1.dbTestConnect)();
     const user = new user_1.default({
         username: 'Usuario de Prueba',

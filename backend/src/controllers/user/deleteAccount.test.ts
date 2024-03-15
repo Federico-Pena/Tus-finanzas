@@ -1,7 +1,7 @@
 import express, { Application } from 'express'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import User from '../../models/user'
 import { deleteAccount } from './deleteAccount'
 import { hash } from 'bcrypt'
@@ -10,7 +10,7 @@ let app: Application
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.delete(RUTES.USER.deleteUserAccount, deleteAccount)
+  app.delete(ROUTES.USER.deleteUserAccount, deleteAccount)
   await dbTestConnect()
   const userPassword = 'Password88'
   const saltRounds = 10
@@ -30,7 +30,7 @@ describe('login  controller', () => {
   it('It should give an error if the user not exists message should be "El usuario no existe."', async () => {
     const userName = 'PepeExample88'
     await request(app)
-      .delete(RUTES.USER.deleteUserAccount.replace(':username', userName))
+      .delete(ROUTES.USER.deleteUserAccount.replace(':username', userName))
       .expect(404)
       .then((response) => {
         const { error } = response.body
@@ -41,7 +41,7 @@ describe('login  controller', () => {
     const userName = 'PepeExample'
     vi.spyOn(User, 'findByIdAndDelete').mockResolvedValueOnce(null)
     await request(app)
-      .delete(RUTES.USER.deleteUserAccount.replace(':username', userName))
+      .delete(ROUTES.USER.deleteUserAccount.replace(':username', userName))
       .expect(500)
       .then((response) => {
         const { error } = response.body
@@ -55,7 +55,7 @@ describe('login  controller', () => {
       throw new Error('Simulated internal server error')
     })
     await request(app)
-      .delete(RUTES.USER.deleteUserAccount.replace(':username', userName))
+      .delete(ROUTES.USER.deleteUserAccount.replace(':username', userName))
       .expect(500)
       .then((response) => {
         const { error } = response.body
@@ -66,7 +66,7 @@ describe('login  controller', () => {
   it('The user should be able to delete the account message should be "Usuario eliminado con éxito."', async () => {
     const userName = 'PepeExample'
     await request(app)
-      .delete(RUTES.USER.deleteUserAccount.replace(':username', userName))
+      .delete(ROUTES.USER.deleteUserAccount.replace(':username', userName))
       .expect(200)
       .then((response) => {
         const { message } = response.body

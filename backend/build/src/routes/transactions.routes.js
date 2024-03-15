@@ -13,10 +13,10 @@ const putTransactions_1 = require("../controllers/transactions/putTransactions")
 const authorization_1 = __importDefault(require("../middleware/authorization"));
 exports.transactionsRoutes = (0, express_1.Router)();
 // Ruta para obtener todas las transacciones asociadas a un usuario específico.
-exports.transactionsRoutes.get(constants_1.RUTES.TRANSACTIONS.getTransactions, authorization_1.default, getTransactions_1.getTransactions);
+exports.transactionsRoutes.get(constants_1.ROUTES.TRANSACTIONS.getTransactions, authorization_1.default, getTransactions_1.getTransactions);
 // Ruta para crear una nueva transacción para un usuario específico.
-exports.transactionsRoutes.post(constants_1.RUTES.TRANSACTIONS.postTransactions, authorization_1.default, postTransactions_1.postTransactions);
+exports.transactionsRoutes.post(constants_1.ROUTES.TRANSACTIONS.postTransactions, authorization_1.default, postTransactions_1.postTransactions);
 // Ruta para actualizar una transacción existente para un usuario específico.
-exports.transactionsRoutes.put(constants_1.RUTES.TRANSACTIONS.putTransactions, authorization_1.default, putTransactions_1.putTransactions);
+exports.transactionsRoutes.put(constants_1.ROUTES.TRANSACTIONS.putTransactions, authorization_1.default, putTransactions_1.putTransactions);
 // Ruta para eliminar una transacción existente para un usuario específico.
-exports.transactionsRoutes.delete(constants_1.RUTES.TRANSACTIONS.deleteTransactions, authorization_1.default, deleteTransactions_1.deleteTransactions);
+exports.transactionsRoutes.delete(constants_1.ROUTES.TRANSACTIONS.deleteTransactions, authorization_1.default, deleteTransactions_1.deleteTransactions);

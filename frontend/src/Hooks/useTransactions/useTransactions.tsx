@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RUTES } from '../../config/Rutes'
+import { ROUTES } from '../../config/Routes'
 import useFetch from '../useFetch/useFetch'
 import { useTransactionContext } from '../../Context/TransactionsContext/TransactionContext'
 import dayjs from 'dayjs'
@@ -9,7 +9,7 @@ dayjs.extend(utc)
 
 const useTransactions = () => {
   const { fetchData } = useFetch()
-  const { dispatch } = useTransactionContext()
+  const { dispatch, totalCount } = useTransactionContext()
   const [loading, setLoading] = useState(false)
 
   const addTransaction = async (datos: FormData) => {
@@ -43,12 +43,16 @@ const useTransactions = () => {
 
     try {
       setLoading(true)
-      const url = RUTES.TRANSACTIONS.postTransactions
+      const url = ROUTES.TRANSACTIONS.postTransactions
       const { status, data } = await fetchData({ url, method: 'POST', body })
       if (status === 200) {
         dispatch({
           type: 'ADD_NEW_TRANSACTIONS',
           payload: data
+        })
+        dispatch({
+          type: 'ADD_TOTAL_COUNT',
+          payload: totalCount + 1
         })
         return true
       }
@@ -63,12 +67,16 @@ const useTransactions = () => {
   const deleteTransaction = async (id: string) => {
     try {
       setLoading(true)
-      const url = `${RUTES.TRANSACTIONS.deleteTransactions}${id}`
+      const url = `${ROUTES.TRANSACTIONS.deleteTransactions}${id}`
       const { status, data } = await fetchData({ url, method: 'DELETE' })
       if (status === 200) {
         dispatch({
           type: 'DELETE_TRANSACTION',
           payload: data
+        })
+        dispatch({
+          type: 'ADD_TOTAL_COUNT',
+          payload: totalCount - 1
         })
       }
     } catch (error) {
@@ -105,7 +113,7 @@ const useTransactions = () => {
     }
     try {
       setLoading(true)
-      const url = `${RUTES.TRANSACTIONS.putTransactions}${id}`
+      const url = `${ROUTES.TRANSACTIONS.putTransactions}${id}`
       const { status, data } = await fetchData({ url, method: 'PUT', body })
       if (status === 200) {
         dispatch({

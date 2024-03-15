@@ -1,7 +1,7 @@
 import express, { Application } from 'express'
 import request from 'supertest'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { register } from './register'
 import User from '../../models/user'
 import { userTest } from '../testConst'
@@ -10,7 +10,7 @@ let app: Application
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.post(RUTES.USER.registerUser, register)
+  app.post(ROUTES.USER.registerUser, register)
   await dbTestConnect()
 })
 afterAll(async () => {
@@ -20,7 +20,7 @@ afterAll(async () => {
 describe('register  controller', () => {
   it('It should give an error if the username is less than 3 or more than 12 characters message should be "El nombre de usuario debe tener entre 3 y 12 caracteres."', async () => {
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(userTest)
       .expect(400)
       .then((response) => {
@@ -35,7 +35,7 @@ describe('register  controller', () => {
       password: 'password'
     }
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(user)
       .expect(400)
       .then((response) => {
@@ -50,7 +50,7 @@ describe('register  controller', () => {
       password: 'password'
     }
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(user)
       .expect(400)
       .then((response) => {
@@ -67,7 +67,7 @@ describe('register  controller', () => {
       password: 'Password8'
     }
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(user)
       .expect(200)
       .then((response) => {
@@ -82,7 +82,7 @@ describe('register  controller', () => {
       password: 'Password8'
     }
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(user)
       .expect(400)
       .then((response) => {
@@ -101,7 +101,7 @@ describe('register  controller', () => {
     })
 
     await request(app)
-      .post(RUTES.USER.registerUser)
+      .post(ROUTES.USER.registerUser)
       .send(user)
       .expect(500)
       .then((response) => {

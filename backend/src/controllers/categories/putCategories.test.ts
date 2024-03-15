@@ -2,7 +2,7 @@ import express, { Application } from 'express'
 import request from 'supertest'
 import { Category } from '../../models/category'
 import { putCategories } from './putCategories'
-import { RUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 import { dbTestConnect, dbTestDisconnect } from '../../databaseTest'
 import User from '../../models/user'
 import {
@@ -16,11 +16,11 @@ import authMiddleware from '../../middleware/authorization'
 
 let app: Application
 let token: string
-const url = `${RUTES.CATEGORIES.putCategories.replace(':id', '')}`
+const url = `${ROUTES.CATEGORIES.putCategories.replace(':id', '')}`
 beforeAll(async () => {
   app = express()
   app.use(express.json())
-  app.put(RUTES.CATEGORIES.putCategories, authMiddleware, putCategories)
+  app.put(ROUTES.CATEGORIES.putCategories, authMiddleware, putCategories)
   await dbTestConnect()
   const user = new User(userTest)
   const newUser = await user.save()

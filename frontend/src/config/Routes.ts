@@ -1,5 +1,5 @@
-const BaseUrl = 'https://tus-finanzasapp.vercel.app' //'http:192.168.1.2:3000'
-export const RUTES = {
+const BaseUrl = /* 'https://tus-finanzasapp.vercel.app' */ 'http://192.168.1.2:3000'
+export const ROUTES = {
   CATEGORIES: {
     getCategories: `${BaseUrl}/api/categories/`,
     postCategories: `${BaseUrl}/api/categories/new/`,
