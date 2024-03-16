@@ -99,9 +99,8 @@ const TransactionListFilters = () => {
           </View>
           <FlatList
             data={categories}
-            style={styles.flatList}
-            contentContainerStyle={styles.contentFlatList}
             horizontal
+            contentContainerStyle={styles.contentFlatList}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={[
@@ -167,8 +166,6 @@ const styles = StyleSheet.create({
     rowGap: 20,
     padding: 20,
     width: '100%',
-    position: 'absolute',
-    top: 45,
     borderRadius: 5
   },
   containerType: {
@@ -193,19 +190,10 @@ const styles = StyleSheet.create({
   typeNotIsPayment: {
     backgroundColor: THEME.colors.themeLight.red
   },
-  flatList: {
-    width: '100%',
-    marginTop: 10
-  },
   contentFlatList: {
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 10
+    columnGap: 10
   },
   contentItemFlatList: {
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,

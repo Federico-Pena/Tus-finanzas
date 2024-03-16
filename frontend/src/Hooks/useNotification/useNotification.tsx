@@ -1,10 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import registerForPushNotificationsAsync from './registerForPushNotificationsAsync'
 import useFetch from '../useFetch/useFetch'
 import { ROUTES } from '../../config/Routes'
-import { ITransaction } from '../../Context/TransactionsContext/types'
-import { scheduleNotificationAsync, setNotificationHandler } from 'expo-notifications'
-import { Alert } from 'react-native'
+import { setNotificationHandler } from 'expo-notifications'
 
 setNotificationHandler({
   handleNotification: async () => ({
@@ -19,6 +17,7 @@ const useNotification = () => {
   const [isLoading, setLoading] = useState(false)
   const requestPermissionAndGetToken = async () => {
     setLoading(true)
+
     try {
       const token = await registerForPushNotificationsAsync()
       if (token) {
@@ -39,27 +38,7 @@ const useNotification = () => {
     }
   }
 
-  const createNotification = async (transaction: ITransaction) => {
-    if (transaction.notificationEnabled && transaction.paymentDueDate !== undefined) {
-      const dateNotification = new Date(transaction.paymentDueDate)
-      const message = `${String(transaction.description)}. Monto ${Number(
-        transaction.amount
-      )}. Fecha ${dateNotification.toLocaleDateString()} ${dateNotification.toLocaleTimeString()}`
-      try {
-        await scheduleNotificationAsync({
-          content: {
-            title: 'Recordatorio de transacción',
-            body: message,
-            sound: true
-          },
-          trigger: dateNotification
-        })
-      } catch (error) {
-        Alert.alert('Ocurrió un error al crear la notificación')
-      }
-    }
-  }
-  return { requestPermissionAndGetToken, createNotification, isLoading }
+  return { requestPermissionAndGetToken, isLoading }
 }
 
 export default useNotification

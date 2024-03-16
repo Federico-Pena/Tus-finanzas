@@ -12,6 +12,15 @@ import { isDevice } from 'expo-device'
 const { projectId } = Constants.expoConfig?.extra?.eas
 const registerForPushNotificationsAsync = async (): Promise<string | undefined> => {
   let token
+  if (Platform.OS === 'android') {
+    setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+      sound: 'default'
+    })
+  }
   if (isDevice) {
     const { status: existingStatus } = await getPermissionsAsync()
     let finalStatus = existingStatus
@@ -27,15 +36,6 @@ const registerForPushNotificationsAsync = async (): Promise<string | undefined> 
       return
     }
     token = (await getExpoPushTokenAsync(projectId)).data
-    if (Platform.OS === 'android') {
-      setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: '#FF231F7C',
-        sound: 'default'
-      })
-    }
   }
   return token
 }
