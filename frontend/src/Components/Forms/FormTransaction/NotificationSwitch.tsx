@@ -5,12 +5,11 @@ import { NotificationSwitchProps } from './types'
 
 const NotificationSwitch = ({ value, onValueChange }: NotificationSwitchProps) => {
   const [isEnabled, setIsEnabled] = useState(value)
-  const { requestPermissionAndGetToken, isLoading } = useNotification()
+  const { isLoading, pushToken } = useNotification()
 
   const toggleSwitch = async () => {
     if (!isEnabled) {
-      const granted = await requestPermissionAndGetToken()
-      if (granted) {
+      if (pushToken?.data) {
         setIsEnabled(true)
         onValueChange(true)
       }
